@@ -4,9 +4,12 @@ var router = express.Router();
 var employeeModel = require('../models/employees');
 var timelogModel = require('../models/timelog');
 */
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('/checkin/index', {
+    title: 'The Portal Check-in System'
+  });
 });
 /*
 router.post('/', function(req, res){
