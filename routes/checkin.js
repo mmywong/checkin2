@@ -27,7 +27,7 @@ router.get('/confirm', function(req, res, next) {
 });
 
 /* GET the user's time Log page. */
-router.get('/log', function(req, res, next) {
+router.get('/log', function(req, res, next) { // add :id later
   res.render('checkin/log', {
     title: 'Express'
   });
