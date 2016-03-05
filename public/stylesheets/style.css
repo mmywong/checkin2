@@ -17,9 +17,9 @@ body:after{
   z-index: -1;
 }
 
-#id_box, h1, #num_pad{
-  text-align: center;
-}
+                 #id_box, h1, #num_pad{
+                   text-align: center;
+                 }
 
 h1{
   font-size: 65px !important;
@@ -115,3 +115,15 @@ h3{
 #myTable{
   font-size: 30px;
 }
+
+.logDetails {
+  background-color: gray;
+}
+th{
+  text-align: left;
+  cursor: pointer;
+}
+table tbody tr td{
+  padding-left: 15px;
+}
+
