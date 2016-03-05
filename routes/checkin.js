@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 var employeeModel = require('../models/employees');
-var timelogModel = require('../models/timelog');
+var timelogModel = require('../models/timelog') ;
 
 /* FOR BACK-END TESTING ONLY. DELETE LATER. */
 router.get('/test', function(req, res, next) {

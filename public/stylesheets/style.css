@@ -1,6 +1,7 @@
 body {
   position: relative;
   background-color: white;
+  margin: 50px;
 }
 
 .invalid_user{
@@ -131,3 +132,10 @@ table tbody tr td{
   padding-left: 15px;
 }
 
+#myTable{
+  align: center;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #818a91 !important;
+}
