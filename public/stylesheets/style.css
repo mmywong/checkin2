@@ -4,6 +4,10 @@ body {
   margin: 50px;
 }
 
+.invalid_user{
+    font-color: red;
+}
+
 body:after{
   content : "";
   display: block;

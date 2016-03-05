@@ -3,16 +3,15 @@
 <head>
   <title>Check-In</title>
   <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" crossorigin="anonymous">
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/style.css'>
 
 </head>
 
 <body>
 
 
-<h1>Check-In</h1>
+<h1><%= title%></h1>
 <div id = 'id_box'>
   <h2>ID:</h2>
 
@@ -20,7 +19,11 @@
     <input type="text" name='user_id' id = "box" value="" readonly>
 
 
-  <button class = 'btn btn-danger' id = 'bksps' type = 'button'>BKSPS</button><br>
+  <button class = 'btn btn-danger' id = 'bksps' type = 'button'>
+
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+
+  </button><br>
 </div>
 
 <div id = 'num_pad'>
@@ -40,7 +43,9 @@
 </div>
 
 <div class = 'submit'>
-  <button class = 'btn btn-success' id = 'submit' type = 'submit'> SUBMIT </button>
+  <button class = 'btn btn-success' id = 'submit' type = 'submit'>
+      SUBMIT <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+  </button>
 </div>
 
 </form>
