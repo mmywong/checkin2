@@ -17,28 +17,6 @@ body:after{
   z-index: -1;
 }
 
-<<<<<<< HEAD
-body {
-  position: relative;
-  background-color: white;
-}
-
-body:after{
-  content : "";
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-image: url("http://www.goodwp.com/images/201104/goodwp.com_16968.jpg");
-  background-repeat: repeat;
-  width: 100%;
-  height: 100%;
-  opacity : 0.5;
-  z-index: -1;
-}
-
-=======
->>>>>>> upstream/master
 #id_box, h1, #num_pad{
   text-align: center;
 }
