@@ -27,7 +27,7 @@ router.get('/confirm', function(req, res, next) {
 });
 
 /* GET the user's time Log page. */
-router.get('/log', function(req, res, next) {
+router.get('/log', function(req, res, next) { // add :id later
   res.render('checkin/log', {
     title: 'Express'
   });
@@ -110,7 +110,7 @@ function createNewTimelog(userid, timein, timeout){
 function renderConfirmPage(res, userid, name, checkedIn){
   res.render('checkin/confirm', {
     user_id: userid,
-    first_name: name
+    first_name: name,
     is_checking_in: checkedIn
   });
 }
