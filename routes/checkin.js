@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 
 /* GET the Confirm page. */
 router.get('/confirm', function(req, res, next) {
-  renderConfirmPage(res, "", "The Portal", true);
+  renderConfirmPage(res, "", "The Portal");
 });
 
 /* GET the user's time Log page. */
@@ -56,7 +56,7 @@ router.post('/', function(req, res){
   employeeModel.find({userid: userId}, function(err, docs){
     // TODO: Add error handling
     if (err) throw err;
-
+    console.log(userId);
     id = docs[0]._id;
     firstName = docs[0].firstname;
     checkedIn = docs[0].checkedin;
@@ -89,7 +89,7 @@ router.post('/', function(req, res){
           //printEmployeeData(id);
           //printTimelogData(userId);
 
-          renderConfirmPage(res, userId, firstName, checkedIn);
+          renderConfirmPage(res, userId, firstName);
         });
       });
     }
@@ -107,11 +107,10 @@ function createNewTimelog(userid, timein, timeout){
 }
 
 // Render the confirm.ejs file.
-function renderConfirmPage(res, userid, name, checkedIn){
+function renderConfirmPage(res, userid, name){
   res.render('checkin/confirm', {
     user_id: userid,
-    first_name: name,
-    is_checked_in: checkedIn
+    first_name: name
   });
 }
 
