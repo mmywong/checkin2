@@ -1,6 +1,6 @@
 /**
-* Created by kaseymunetake on 3/2/16.
-*/
+ * Created by kaseymunetake on 3/2/16.
+ */
 var express = require('express');
 var router = express.Router();
 
@@ -34,7 +34,7 @@ router.get('/log', function(req, res, next) { // add :id later
 });
 
 /* POST the user's ID number. Compare to the database.
-If no error, redirect to the Confirm page. */
+ If no error, redirect to the Confirm page. */
 router.post('/', function(req, res){
 
   console.log("Submit button has been pressed.");
@@ -46,17 +46,13 @@ router.post('/', function(req, res){
   var timeIn = Date.now();  // Get the current time
   var timeOut = 0;
 
-  // var emptyEmployee = new employeeModel({
-  //   userid: userId,
-  //   firstname: firstName,
-  //   lastname: "",
-  //   checkedin: checkedIn
-  // });
-
+  // Look for the userid to see if it exists
   employeeModel.find({userid: userId}, function(err, docs){
     // TODO: Add error handling
     if (err) throw err;
+
     console.log(userId);
+
     id = docs[0]._id;
     firstName = docs[0].firstname;
     checkedIn = docs[0].checkedin;
@@ -65,7 +61,32 @@ router.post('/', function(req, res){
     if(checkedIn == true){
       console.log("Need to check out!");
 
-      // TODO: Checking out
+      // Find the user's most recent time log entry
+      timelogModel.find({userid: userId}, function(err, docs){
+        if (err) throw err;
+        var currentLog = docs.length - 1;
+        var logId = docs[currentLog]._id;
+        timeOut = Date.now();
+
+        // Add the user's checkout time
+        timelogModel.update({_id: logId}, {timeout: timeOut}, function(err, doc){
+          if (err) throw err;
+          console.log("Updated the timelogModel!");
+
+          // Change the checkedin boolean for the user in employeeModel
+          checkedIn = false;
+
+          employeeModel.update({_id: id}, {checkedin: checkedIn}, function(err, doc){
+
+            console.log("Updated the employeeModel!");
+            //printEmployeeData(id);
+            //printTimelogData(userId);
+
+            // Redirect to the Confirm page
+            renderConfirmPage(res, userId, firstName, checkedIn);
+          });
+        });
+      });
     }
     // If the user is currently checked out
     else if(checkedIn == false){
@@ -77,22 +98,44 @@ router.post('/', function(req, res){
       // Save the time log
       newTimelog.save({}, function(err, doc){
         if (err) throw err;
-        console.log("Time added!");
+        console.log("Time added to the timelogModel!");
 
         // Change the checkedin boolean for the user in employeeModel
         checkedIn = true;
 
-        employeeModel.update({_id: id, checkedin: checkedIn}, function(err, doc){
-          // Redirect to the Confirm page
-          console.log("Updated!");
+        employeeModel.update({_id: id}, {checkedin: checkedIn}, function(err, doc){
 
+          console.log("Updated the employeeModel!");
           //printEmployeeData(id);
           //printTimelogData(userId);
 
+          // Redirect to the Confirm page
           renderConfirmPage(res, userId, firstName, checkedIn);
         });
       });
     }
+  });
+});
+
+router.post('/confirm', function(req, res){
+  var userId = req.body.user_id;
+  var offset = req.body.offset;
+  var today = new Date();
+  var sundayOfWeek = new Date(today.getFullYear(), today.getMonth(), (today.getDate() - 7 * offset) - today.getDay());
+  var sundayOfNextWeek = new Date(today.getFullYear(), today.getMonth(), (today.getDate() - 7 * offset + 7) - today.getDay());
+  console.log(sundayOfWeek);
+  console.log(sundayOfNextWeek);
+
+  timelogModel.find({userid: userId, timeout: {$gt: sundayOfWeek.getTime(), $lt: sundayOfNextWeek.getTime()}}, function(err, doc){
+
+    console.log(doc);
+
+    // TODO: Separate All Entries Into Separate Day of Week, Number of Hours
+
+
+
+
+    res.end();
   });
 });
 
@@ -104,7 +147,7 @@ function createNewTimelog(userid, timein, timeout){
     timeout: timeout
   });
   return timelog;
-}
+};
 
 // Render the confirm.ejs file.
 function renderConfirmPage(res, userid, name, checkedIn){
@@ -113,18 +156,18 @@ function renderConfirmPage(res, userid, name, checkedIn){
     first_name: name,
     is_checking_in: checkedIn
   });
-}
+};
 
 function printEmployeeData(id){
   employeeModel.find({_id: id}, function(err, docs){
     console.log(docs);
   });
-}
+};
 
 function printTimelogData(userId){
   timelogModel.find({userid: userId}, function(err, docs){
     console.log(docs);
   });
-}
+};
 
 module.exports = router;
