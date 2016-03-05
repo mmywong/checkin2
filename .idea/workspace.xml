@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea734b3c-b2d0-48ab-a979-de25bf103e6e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/checkin.js" afterPath="$PROJECT_DIR$/routes/checkin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/checkin/confirm.ejs" afterPath="$PROJECT_DIR$/views/checkin/confirm.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/checkin/index.ejs" afterPath="$PROJECT_DIR$/views/checkin/index.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/checkin/log.ejs" afterPath="$PROJECT_DIR$/views/checkin/log.ejs" />
-    </list>
+    <list default="true" id="ea734b3c-b2d0-48ab-a979-de25bf103e6e" name="Default" comment="" />
     <ignored path="checkin2.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -92,8 +85,8 @@
       <file leaf-file-name="confirm.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/checkin/confirm.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36623067">
-              <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.20927468">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -444,8 +437,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/checkin/confirm.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36623067">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.20927468">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
