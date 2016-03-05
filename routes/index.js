@@ -7,10 +7,11 @@ var timelogModel = require('../models/timelog');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('/checkin/index', {
+  res.render('checkin/index', {
     title: 'The Portal Check-in System'
   });
 });
+
 /*
 router.post('/', function(req, res){
   console.log("here");

@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= title %></title>
-  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+  <title>Check-In</title>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" crossorigin="anonymous">
   <link rel='stylesheet' href='/stylesheets/style.css' />
+
+
+
 </head>
+
 <body>
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
+
+
+<h1>Check-In</h1>
+<div id = 'id_box'>
+  <h2>ID:</h2>
+
+  <form action='/checkin' method="POST" id = "id_text_box">
+    <input type="text" name='user_id' id = "box" value="" readonly>
+
+
+  <button class = 'btn btn-danger' id = 'bksps' type = 'button'>BKSPS</button><br>
+</div>
+
+<div id = 'num_pad'>
+  <button class = 'btn btn-info' id = 'one' value = '1' type = 'button'>1</button>
+  <button class = 'btn btn-info' id = 'two' value = '2' type = 'button'>2</button>
+  <button class = 'btn btn-info' id = 'three' value = '3' type = 'button'>3</button><br>
+
+  <button class = 'btn btn-info' id = 'four' value = '4' type ='button'>4</button>
+  <button class = 'btn btn-info' id = 'five' value = '5' type = 'button'>5</button>
+  <button class = 'btn btn-info' id = 'six' value = '6' type = 'button'>6</button><br>
+
+  <button class = 'btn btn-info' id = 'seven' value = '7' type = 'button'>7</button>
+  <button class = 'btn btn-info' id = 'eight' value = '8' type = 'button'>8</button>
+  <button class = 'btn btn-info' id = 'nine' value = '9' type = 'button'>9</button><br>
+
+  <button class = 'btn btn-info' id = 'zero' value = '0' type = 'button'>0</button><br>
+</div>
+
+<div class = 'submit'>
+  <button class = 'btn btn-success' id = 'submit' type = 'submit'> SUBMIT </button>
+</div>
+
+</form>
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="/javascript/script.js"></script>
 </body>
 </html>

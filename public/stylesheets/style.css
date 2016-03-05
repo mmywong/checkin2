@@ -1,12 +1,23 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  position: relative;
+  background-color: white;
 }
 
-a {
-  color: #00B7FF;
+body:after{
+  content : "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("http://www.goodwp.com/images/201104/goodwp.com_16968.jpg");
+  background-repeat: repeat;
+  width: 100%;
+  height: 100%;
+  opacity : 0.5;
+  z-index: -1;
 }
 
+<<<<<<< HEAD
 body {
   position: relative;
   background-color: white;
@@ -26,6 +37,8 @@ body:after{
   z-index: -1;
 }
 
+=======
+>>>>>>> upstream/master
 #id_box, h1, #num_pad{
   text-align: center;
 }
@@ -66,9 +79,16 @@ h3{
   margin-top: 20px;
 }
 
+.btn.btn-info:visited{
+  background-color: #1E3EE0 !important;
+}
 
 .btn.btn-info:hover{
-  background-color: #1E3EE0;
+  background-color: #1E3EE0 !important;
+}
+
+.btn.btn-info:active{
+  background-color: #1E3EE0 !important;
 }
 
 #bksps{
@@ -118,13 +138,3 @@ h3{
   font-size: 30px;
 }
 
-.logDetails {
-  background-color: gray;
-}
-th{
-  text-align: left;
-  cursor: pointer;
-}
-table tbody tr td{
-  padding-left: 15px;
-}
