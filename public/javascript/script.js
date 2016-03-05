@@ -5,7 +5,15 @@ var main = function () {
         var num = $(this).attr('value');
         $("#box").val(function () {
             var prev = $("#box").val();
-            prev += num;
+            var newNum = prev + num;
+            if (newNum.length > 8)
+            {
+                return prev;
+            }
+            else
+            {
+                return newNum;
+            }
             return prev;
         });
     });

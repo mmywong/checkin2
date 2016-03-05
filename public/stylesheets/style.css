@@ -3,6 +3,10 @@ body {
   background-color: white;
 }
 
+.invalid_user{
+    font-color: red;
+}
+
 body:after{
   content : "";
   display: block;
