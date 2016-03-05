@@ -1,6 +1,6 @@
 /**
-* Created by kaseymunetake on 3/2/16.
-*/
+ * Created by kaseymunetake on 3/2/16.
+ */
 var express = require('express');
 var router = express.Router();
 
@@ -34,7 +34,7 @@ router.get('/log', function(req, res, next) { // add :id later
 });
 
 /* POST the user's ID number. Compare to the database.
-If no error, redirect to the Confirm page. */
+ If no error, redirect to the Confirm page. */
 router.post('/', function(req, res){
 
   console.log("Submit button has been pressed.");
@@ -117,6 +117,107 @@ router.post('/', function(req, res){
   });
 });
 
+router.post('/confirm', function(req, res){
+  var userId = req.body.user_id;
+  var offset = req.body.offset;
+  var today = new Date();
+  var sundayOfWeek = new Date(today.getFullYear(), today.getMonth(), (today.getDate() - 7 * offset) - today.getDay());
+  var sundayOfNextWeek = new Date(today.getFullYear(), today.getMonth(), (today.getDate() - 7 * offset + 7) - today.getDay());
+  console.log(sundayOfWeek);
+  console.log(sundayOfNextWeek);
+
+  timelogModel.find({userid: userId, timeout: {$gt: sundayOfWeek.getTime(), $lt: sundayOfNextWeek.getTime()}}, function(err, doc){
+
+    //console.log(doc);
+
+    var sundayHours = 0;
+    var sundayTimes = [];
+    var mondayHours = 0;
+    var mondayTimes = [];
+    var tuesdayHours = 0;
+    var tuesdayTimes = [];
+    var wednesdayHours = 0;
+    var wednesdayTimes = [];
+    var thursdayHours = 0;
+    var thursdayTimes = [];
+    var fridayHours = 0;
+    var fridayTimes = [];
+    var saturdayHours = 0;
+    var saturdayTimes = [];
+
+    // TODO: Separate All Entries Into Separate Day of Week, Number of Hours
+    for(var i = 0; i < doc.length; i++){
+      var timein = new Date(doc[i].timein);
+      var timeout = new Date(doc[i].timeout);
+      //console.log(timein.getDay());
+      //console.log(timeout.getDay());
+      //console.log((timeout - timein) / 3600 / 1000);
+      switch(timeout.getDay()){
+        case 0:
+          sundayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          sundayHours = sundayHours + (timeout - timein) / 3600 / 1000;
+          break;
+        case 1:
+          mondayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          mondayHours = sundayHours + (timeout - timein) / 3600 / 1000;
+          break;
+        case 2:
+          tuesdayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          tuesdayHours = sundayHours + (timeout - timein) / 3600 / 1000;
+          break;
+        case 3:
+          wednesdayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          wednesdayHours = sundayHours + (timeout - timein) / 3600 / 1000;
+          break;
+        case 4:
+          thursdayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          thursdayHours = sundayHours + (timeout - timein) / 3600 / 1000;
+          break;
+        case 5:
+          fridayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          fridayHours = sundayHours + (timeout - timein) / 3600 / 1000;
+          break;
+        case 6:
+          saturdayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          saturdayHours = sundayHours + (timeout - timein) / 3600 / 1000;
+          break;
+        default:
+          break;
+      }
+      console.log(saturdayTimes);
+      console.log(saturdayHours);
+
+      var totalHours = sundayHours + mondayHours + tuesdayHours + wednesdayHours + thursdayHours + fridayHours + saturdayHours;
+
+      var output = {
+          data: {
+            totalHours: totalHours.toFixed(2),
+            sundayHours: sundayHours.toFixed(2),
+            sundayTimes: sundayTimes,
+            mondayHours: mondayHours.toFixed(2),
+            mondayTimes: mondayTimes,
+            tuesdayHours: tuesdayHours.toFixed(2),
+            tuesdayTimes: tuesdayTimes,
+            wednesdayHours: wednesdayHours.toFixed(2),
+            wednesdayTimes: wednesdayTimes,
+            thursdayHours: thursdayHours.toFixed(2),
+            thursdayTimes: thursdayTimes,
+            fridayHours: fridayHours.toFixed(2),
+            fridayTimes: fridayTimes,
+            saturdayHours: saturdayHours.toFixed(2),
+            saturdayTimes: saturdayTimes
+          }
+      };
+
+      console.log(output);
+
+      res.render('checkin/log', output)
+
+    }
+
+  });
+});
+
 // Create a new timelogModel entry.
 function createNewTimelog(userid, timein, timeout){
   var timelog = new timelogModel({
@@ -125,7 +226,7 @@ function createNewTimelog(userid, timein, timeout){
     timeout: timeout
   });
   return timelog;
-}
+};
 
 // Render the confirm.ejs file.
 function renderConfirmPage(res, userid, name, checkedIn){
@@ -134,18 +235,18 @@ function renderConfirmPage(res, userid, name, checkedIn){
     first_name: name,
     is_checking_in: checkedIn
   });
-}
+};
 
 function printEmployeeData(id){
   employeeModel.find({_id: id}, function(err, docs){
     console.log(docs);
   });
-}
+};
 
 function printTimelogData(userId){
   timelogModel.find({userid: userId}, function(err, docs){
     console.log(docs);
   });
-}
+};
 
 module.exports = router;
