@@ -22,9 +22,9 @@ body:after{
   z-index: -1;
 }
 
-                 #id_box, h1, #num_pad{
-                   text-align: center;
-                 }
+#id_box, h1, #num_pad{
+    text-align: center;
+}
 
 h1{
   font-size: 65px !important;
