@@ -1,19 +1,52 @@
 $(document).ready(function () {
-    $("table").on("click", "tbody", function () {
-        var $this = $(this);
-        var myTRs = $this.children("tr");
 
-        if ($this.hasClass("collapsed")) {
-            $this.removeClass("collapsed");
-            myTRs.first().remove();
-            myTRs.show();
-        } else {
-            $this.addClass("collapsed");
-            var day = myTRs.first().children("td").first().text();
-            var hours = myTRs.first().children("td").children("tr");
-            console.log(hours);
-            myTRs.hide();
-            $this.prepend($("<tr><td>" + day + "</td><td></td></td></tr>").hide()).find("tr").first().slideDown();
-        }
+    $("#mon_detail").slideDown(500, "linear", function(){
+    });
+    $("#monday").click(function(){
+        $("#mon_detail").slideToggle(200, "linear", function(){
+        });
+    });
+
+    $("#tues_detail").slideDown(500, "linear", function(){
+    });
+    $("#tuesday").click(function(){
+        $("#tues_detail").slideToggle(200, "linear", function(){
+        });
+    });
+
+    $("#wed_detail").slideDown(500, "linear", function(){
+    });
+    $("#wednesday").click(function(){
+        $("#wed_detail").slideToggle(200, "linear", function(){
+        });
+    });
+
+    $("#thur_detail").slideDown(500, "linear", function(){
+    });
+    $("#thursday").click(function(){
+        $("#thur_detail").slideToggle(200, "linear", function(){
+        });
+    });
+
+    $("#fri_detail").slideDown(500, "linear", function(){
+    });
+    $("#friday").click(function(){
+        $("#fri_detail").slideToggle(200, "linear", function(){
+        });
+    });
+
+    $("#sat_detail").slideDown(500, "linear", function(){
+    });
+    $("#saturday").click(function(){
+        $("#sat_detail").slideToggle(200, "linear", function(){
+        });
+    });
+
+    $("#sun_detail").slideDown(500, "linear", function(){
+    });
+    $("#sunday").click(function(){
+        $("#sun_detail").slideToggle(200, "linear", function(){
+        });
     });
 });
+
