@@ -9,11 +9,11 @@ body:after{
   position: fixed;
   top: 0;
   left: 0;
-  background-image: url("http://www.goodwp.com/images/201104/goodwp.com_16968.jpg");
+  background-image: url("https://files.slack.com/files-pri/T047VCBHS-F0QK33659/goldenwallpaper-rotated.png");
   background-repeat: repeat;
   width: 100%;
   height: 100%;
-  opacity : 0.5;
+  opacity : 0.8;
   z-index: -1;
 }
 

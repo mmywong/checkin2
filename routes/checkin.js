@@ -46,17 +46,13 @@ router.post('/', function(req, res){
   var timeIn = Date.now();  // Get the current time
   var timeOut = 0;
 
-  // var emptyEmployee = new employeeModel({
-  //   userid: userId,
-  //   firstname: firstName,
-  //   lastname: "",
-  //   checkedin: checkedIn
-  // });
-
+  // Look for the userid to see if it exists
   employeeModel.find({userid: userId}, function(err, docs){
     // TODO: Add error handling
     if (err) throw err;
+
     console.log(userId);
+
     id = docs[0]._id;
     firstName = docs[0].firstname;
     checkedIn = docs[0].checkedin;
@@ -65,7 +61,32 @@ router.post('/', function(req, res){
     if(checkedIn == true){
       console.log("Need to check out!");
 
-      // TODO: Checking out
+      // Find the user's most recent time log entry
+      timelogModel.find({userid: userId}, function(err, docs){
+        if (err) throw err;
+        var currentLog = docs.length - 1;
+        var logId = docs[currentLog]._id;
+        timeOut = Date.now();
+
+        // Add the user's checkout time
+        timelogModel.update({_id: logId}, {timeout: timeOut}, function(err, doc){
+          if (err) throw err;
+          console.log("Updated the timelogModel!");
+
+          // Change the checkedin boolean for the user in employeeModel
+          checkedIn = false;
+
+          employeeModel.update({_id: id}, {checkedin: checkedIn}, function(err, doc){
+
+            console.log("Updated the employeeModel!");
+            //printEmployeeData(id);
+            //printTimelogData(userId);
+
+            // Redirect to the Confirm page
+            renderConfirmPage(res, userId, firstName, checkedIn);
+          });
+        });
+      });
     }
     // If the user is currently checked out
     else if(checkedIn == false){
@@ -77,18 +98,18 @@ router.post('/', function(req, res){
       // Save the time log
       newTimelog.save({}, function(err, doc){
         if (err) throw err;
-        console.log("Time added!");
+        console.log("Time added to the timelogModel!");
 
         // Change the checkedin boolean for the user in employeeModel
         checkedIn = true;
 
-        employeeModel.update({_id: id, checkedin: checkedIn}, function(err, doc){
-          // Redirect to the Confirm page
-          console.log("Updated!");
+        employeeModel.update({_id: id}, {checkedin: checkedIn}, function(err, doc){
 
+          console.log("Updated the employeeModel!");
           //printEmployeeData(id);
           //printTimelogData(userId);
 
+          // Redirect to the Confirm page
           renderConfirmPage(res, userId, firstName, checkedIn);
         });
       });
