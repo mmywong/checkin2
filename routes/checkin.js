@@ -56,7 +56,7 @@ router.post('/', function(req, res){
   employeeModel.find({userid: userId}, function(err, docs){
     // TODO: Add error handling
     if (err) throw err;
-
+    console.log(userId);
     id = docs[0]._id;
     firstName = docs[0].firstname;
     checkedIn = docs[0].checkedin;
@@ -110,7 +110,7 @@ function createNewTimelog(userid, timein, timeout){
 function renderConfirmPage(res, userid, name){
   res.render('checkin/confirm', {
     user_id: userid,
-    title: name
+    first_name: name
   });
 }
 

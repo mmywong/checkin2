@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+    <title>Check-In</title>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
 </head>
+
 <body>
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+<h1>User's Logs</h1>
+<button class = 'log btn btn-danger' id = 'exit' type = submit>Exit</button>
+
+
+<h3>Logged this week: 10 hrs</h3><br>
+
+<table name = 'myTable' id = 'myTable' class = 'table table-inverse'>
+    <thead>
+    <tr>
+        <th> Day </th>
+        <th> Hours Worked </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td> Monday </td>
+        <td> 3 </td>
+    </tr>
+    <tr>
+        <td> Tuesday </td>
+        <td> 4 </td>
+    </tr>
+    <tr>
+        <td> Wednesday </td>
+        <td> 5 </td>
+    </tr>
+    <tr>
+        <td> Thursday </td>
+        <td> 4 </td>
+    </tr>
+    <tr>
+        <td> Friday </td>
+        <td> 3 </td>
+    </tr>
+    </tbody>
+</table>
+
+</div>
 </body>
 </html>
