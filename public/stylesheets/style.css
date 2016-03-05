@@ -1,8 +1,117 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  position: relative;
+  background-color: white;
 }
 
-a {
-  color: #00B7FF;
+body:after{
+  content : "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("http://www.goodwp.com/images/201104/goodwp.com_16968.jpg");
+  background-repeat: repeat;
+  width: 100%;
+  height: 100%;
+  opacity : 0.5;
+  z-index: -1;
+}
+
+#id_box, h1, #num_pad{
+  text-align: center;
+}
+
+h1{
+  font-size: 65px !important;
+}
+
+h2{
+  font-size: 50px !important;
+  display:inline;
+  vertical-align: -5px;
+}
+
+h3{
+  text-align: center;
+}
+#id_text_box{
+  display: inline;
+  text-align: center;
+}
+
+#box{
+  font-size: 30px;
+  width: 270px;
+  height: 50px;
+}
+
+.btn.btn-info{
+  border: #ffbf00 !important;
+  background-color: #5070FF;
+  color: white;
+  font-size: 55px;
+  padding: 25px;
+  margin: 5px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-top: 20px;
+}
+
+.btn.btn-info:visited{
+  background-color: #1E3EE0 !important;
+}
+
+.btn.btn-info:hover{
+  background-color: #1E3EE0 !important;
+}
+
+.btn.btn-info:active{
+  background-color: #1E3EE0 !important;
+}
+
+#bksps{
+  vertical-align: 5px;
+  font-size: 20px;
+  width: 100px;
+  height: 60px;
+}
+
+#submit{
+  margin-top: 15px;
+  font-size: 40px;
+  padding: 20px;
+  width: 300px;
+  height: 100px;
+}
+
+.submit{
+  text-align: center;
+}
+
+#view_logs, #exit{
+  font-size: 40px;
+  padding: 20px;
+  width: 300px;
+  height: 100px;
+}
+
+#view_logs{
+  margin: 100px;
+}
+
+#exit{
+  margin: -50px;
+}
+
+.log{
+  position:absolute;
+  padding-top: 5px !important;
+  height: 70px !important;
+  top: 70px;
+  right: 90px;
+  width: 125px !important;
+}
+
+#myTable{
+  font-size: 30px;
 }
