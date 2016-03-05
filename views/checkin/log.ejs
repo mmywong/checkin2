@@ -11,7 +11,7 @@
 
   <body>
     <h1>User's Logs</h1>
-    <h3>Logged this week: 10 hours<!--<%#= docs.total %>--> hrs</h3><br>
+    <h3>Logged this week: <%= data.totalHours %> hours</h3><br>
 
     <form action='/checkin' method="GET">
         <button class = 'log btn btn-danger' id = 'exit' type = submit>Exit</button>
@@ -28,119 +28,112 @@
         <tbody>
             <tr id='monday'>
                 <td> Monday </td>
-                <td> 3 </td>
+                <td> <%= data.mondayHours %> </td>
             </tr>
-            <%#for(var i = 0; i < docs.length; i++){ %>
+            <%for(var i = 0; i < data.mondayTimes.length; i++){ %>
                 <tr class='logDetails'>
                     <td colspan='2'>
                         <div id='mon_detail' style="display:none">
-                            3~5
-                            <!--<%#= docs.checkin %> - <%#= docs.checkout %> -->
+                            <%= data.mondayTimes[i].timein %> - <%= data.mondayTimes[i].timeout %>
                         </div>
                     </td>
                 </tr>
-             <%# } %>
+             <% } %>
         </tbody>
 
         <tbody>
             <tr id='tuesday'>
                 <td> Tuesday </td>
-                <td> 3 </td>
+                <td><%= data.tuesdayHours %></td>
             </tr>
-            <%#for(var i = 0; i < docs.length; i++){ %>
+            <%for(var i = 0; i < data.tuesdayTimes.length; i++){ %>
                 <tr class='logDetails'>
                     <td colspan='2'>
                         <div id='tues_detail' style="display:none">
-                            3~5
-                            <!--<%#= docs.checkin %> - <%#= docs.checkout %> -->
+                            <%= data.tuesdayTimes[i].timein %> - <%= data.tuesdayTimes[i].timeout %>
                         </div>
                     </td>
                 </tr>
-             <%# } %>
+             <% } %>
         </tbody>
         <tbody>
             <tr id='wednesday'>
                 <td> Wednesday </td>
-                <td> 3 </td>
+                <td><%= data.wednesdayHours %></td>
             </tr>
-            <%#for(var i = 0; i < docs.length; i++){ %>
+            <%for(var i = 0; i < data.wednesdayTimes.length; i++){ %>
                 <tr class='logDetails'>
                     <td colspan='2'>
                         <div id='wed_detail' style="display:none">
-                            3~5
-                            <!--<%#= docs.checkin %> - <%#= docs.checkout %> -->
+                            <%= data.wednesdayTimes[i].timein %> - <%= data.wednesdayTimes[i].timeout %>
                         </div>
                     </td>
                 </tr>
-             <%# } %>
+             <% } %>
         </tbody>
 
         <tbody>
             <tr id='thursday'>
                 <td> Thursday </td>
-                <td> 3 </td>
+                <td><%= data.thursdayHours %></td>
             </tr>
-            <%#for(var i = 0; i < docs.length; i++){ %>
+            <%for(var i = 0; i < data.thursdayTimes.length; i++){ %>
                 <tr class='logDetails'>
                     <td colspan='2'>
                         <div id='thur_detail' style="display:none">
-                            3~5
-                            <!--<%#= docs.checkin %> - <%#= docs.checkout %> -->
+                            <%= data.thursdayTimes[i].timein %> - <%= data.thursdayTimes[i].timeout %>
                         </div>
                     </td>
                 </tr>
-             <%# } %>
+             <% } %>
         </tbody>
 
         <tbody>
             <tr id='friday'>
                 <td> Friday </td>
-                <td> 3 </td>
+                <td><%= data.fridayHours %></td>
             </tr>
-            <%#for(var i = 0; i < docs.length; i++){ %>
+            <%for(var i = 0; i < data.fridayTimes.length; i++){ %>
                 <tr class='logDetails'>
                     <td colspan='2'>
                         <div id='fri_detail' style="display:none">
-                            3~5
-                            <!--<%#= docs.checkin %> - <%#= docs.checkout %> -->
+                            <%= data.fridayTimes[i].timein %> - <%= data.fridayTimes[i].timeout %>
                         </div>
                     </td>
                 </tr>
-             <%# } %>
+             <% } %>
         </tbody>
 
         <tbody>
             <tr id='saturday'>
                 <td> Saturday </td>
-                <td> 3 </td>
+                <td><%= data.saturdayHours %></td>
             </tr>
-            <%#for(var i = 0; i < docs.length; i++){ %>
+            <%for(var i = 0; i < data.saturdayTimes.length; i++){ %>
                 <tr class='logDetails'>
                     <td colspan='2'>
                         <div id='sat_detail' style="display:none">
-                            3~5
-                            <!--<%#= docs.checkin %> - <%#= docs.checkout %> -->
+                            <%= data.saturdayTimes[i].timein %> - <%= data.saturdayTimes[i].timeout %>
                         </div>
                     </td>
                 </tr>
-             <%# } %>
+             <% } %>
         </tbody>
 
         <tbody>
             <tr id='sunday'>
                 <td> Sunday </td>
-                <td> 3 </td>
+                <td><%= data.sundayHours %></td>
             </tr>
-            <%#for(var i = 0; i < docs.length; i++){ %>
+            <%for(var i = 0; i < data.sundayTimes.length; i++){ %>
                 <tr class='logDetails'>
                     <td colspan='2'>
                         <div id='sun_detail' style="display:none">
-                            3~5
-                            <!--<%#= docs.checkin %> - <%#= docs.checkout %> -->
+                            <%= data.sundayTimes[i].timein %> - <%= data.sundayTimes[i].timeout %>
                         </div>
                     </td>
                 </tr>
-             <%# } %>
+             <% } %>
         </tbody>
 
 <script src="/javascript/timelog.js"></script>
