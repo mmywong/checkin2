@@ -17,7 +17,8 @@ router.get('/test', function(req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('checkin/index', {
-    title: 'The Portal Check-in System'
+    title: 'The Portal Check-in System',
+    title_style: ''
   });
 });
 
@@ -48,33 +49,67 @@ router.post('/', function(req, res){
 
   // Look for the userid to see if it exists
   employeeModel.find({userid: userId}, function(err, docs){
-    // TODO: Add error handling
     if (err) throw err;
 
-    console.log(userId);
+    // If the userid does not exist in the database
+    if(docs[0] === undefined){
+      res.render('checkin/index', {
+        title: 'Invalid User ID',
+        title_style: 'invalid_user'
+      });
+    }
+    else{
+      console.log(userId);
 
-    id = docs[0]._id;
-    firstName = docs[0].firstname;
-    checkedIn = docs[0].checkedin;
+      id = docs[0]._id;
+      firstName = docs[0].firstname;
+      checkedIn = docs[0].checkedin;
 
-    // If the user is already checked in
-    if(checkedIn == true){
-      console.log("Need to check out!");
+      // If the user is already checked in
+      if(checkedIn == true){
+        console.log("Need to check out!");
 
-      // Find the user's most recent time log entry
-      timelogModel.find({userid: userId}, function(err, docs){
-        if (err) throw err;
-        var currentLog = docs.length - 1;
-        var logId = docs[currentLog]._id;
-        timeOut = Date.now();
-
-        // Add the user's checkout time
-        timelogModel.update({_id: logId}, {timeout: timeOut}, function(err, doc){
+        // Find the user's most recent time log entry
+        timelogModel.find({userid: userId}, function(err, docs){
           if (err) throw err;
-          console.log("Updated the timelogModel!");
+          var currentLog = docs.length - 1;
+          var logId = docs[currentLog]._id;
+          timeOut = Date.now();
+
+          // Add the user's checkout time
+          timelogModel.update({_id: logId}, {timeout: timeOut}, function(err, doc){
+            if (err) throw err;
+            console.log("Updated the timelogModel!");
+
+            // Change the checkedin boolean for the user in employeeModel
+            checkedIn = false;
+
+            employeeModel.update({_id: id}, {checkedin: checkedIn}, function(err, doc){
+
+              console.log("Updated the employeeModel!");
+              //printEmployeeData(id);
+              //printTimelogData(userId);
+
+              // Redirect to the Confirm page
+              renderConfirmPage(res, userId, firstName, checkedIn);
+            });
+          });
+        });
+      }
+      // If the user is currently checked out
+      else if(checkedIn == false){
+        console.log("Need to check in!");
+
+        // Create a new time log
+        var newTimelog = createNewTimelog(userId, timeIn, timeOut);
+
+        // Save the time log
+        newTimelog.save({}, function(err, doc){
+          if (err) throw err;
+          console.log("Time added to the timelogModel!");
 
           // Change the checkedin boolean for the user in employeeModel
-          checkedIn = false;
+          checkedIn = true;
 
           employeeModel.update({_id: id}, {checkedin: checkedIn}, function(err, doc){
 
@@ -86,33 +121,7 @@ router.post('/', function(req, res){
             renderConfirmPage(res, userId, firstName, checkedIn);
           });
         });
-      });
-    }
-    // If the user is currently checked out
-    else if(checkedIn == false){
-      console.log("Need to check in!");
-
-      // Create a new time log
-      var newTimelog = createNewTimelog(userId, timeIn, timeOut);
-
-      // Save the time log
-      newTimelog.save({}, function(err, doc){
-        if (err) throw err;
-        console.log("Time added to the timelogModel!");
-
-        // Change the checkedin boolean for the user in employeeModel
-        checkedIn = true;
-
-        employeeModel.update({_id: id}, {checkedin: checkedIn}, function(err, doc){
-
-          console.log("Updated the employeeModel!");
-          //printEmployeeData(id);
-          //printTimelogData(userId);
-
-          // Redirect to the Confirm page
-          renderConfirmPage(res, userId, firstName, checkedIn);
-        });
-      });
+      }
     }
   });
 });
