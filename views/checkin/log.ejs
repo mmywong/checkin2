@@ -1,52 +1,106 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Check-In</title>
     <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-</head>
+  </head>
 
-<body>
-<h1>User's Logs</h1>
-<button class = 'log btn btn-danger' id = 'exit' type = submit>Exit</button>
+  <body>
+    <h1>User's Logs</h1>
+	<button class = 'log btn btn-danger' id = 'exit' type = submit>Exit</button>
 
 
-<h3>Logged this week: 10 hrs</h3><br>
+    <h3>Logged this week: 10 hrs</h3><br>
 
-<table name = 'myTable' id = 'myTable' class = 'table table-inverse'>
-    <thead>
-    <tr>
-        <th> Day </th>
-        <th> Hours Worked </th>
-    </tr>
-    </thead>
+    <table name = 'myTable' id = 'myTable' class = 'table table-inverse'>
+        <thead>
+            <tr>
+                <th> Day </th>
+                <th> Hours Worked </th>
+            </tr>
+        </thead>
 
-    <tbody>
-    <tr>
-        <td> Monday </td>
-        <td> 3 </td>
-    </tr>
-    <tr>
-        <td> Tuesday </td>
-        <td> 4 </td>
-    </tr>
-    <tr>
-        <td> Wednesday </td>
-        <td> 5 </td>
-    </tr>
-    <tr>
-        <td> Thursday </td>
-        <td> 4 </td>
-    </tr>
-    <tr>
-        <td> Friday </td>
-        <td> 3 </td>
-    </tr>
-    </tbody>
-</table>
+        <tbody>
+            <tr>
+                <td> Monday </td>
+                <td> 3 </td>
+            </tr>
+                        <tr class="logDetails">
+                            <td> 3:30pm </td>
+                            <td> In </td>
+                        </tr>
+                        <tr class = "logDetails">
+                            <td> 4:30pm </td>
+                            <td> Out </td>
+                        </tr>
 
-</div>
-</body>
+        </tbody>
+        <tbody>
+            <tr>
+                <td> Tuesday </td>
+                <td> 4 </td>
+            </tr>
+                        <tr class="logDetails">
+                            <td> 1:30pm </td>
+                            <td> In </td>
+                        </tr>
+                        <tr class="logDetails">
+                            <td> 5:30pm </td>
+                            <td> Out </td>
+                        </tr>
+        </tbody>
+
+        <tbody>
+            <tr>
+                <td> Wednesday </td>
+                <td> 5 </td>
+            </tr>
+                        <tr class="logDetails">
+                            <td> 3:30pm </td>
+                            <td> In </td>
+                        </tr>
+                        <tr class="logDetails">
+                            <td> 4:30pm </td>
+                            <td> Out </td>
+                        </tr>
+        </tbody>
+        <tbody>
+                    <tr>
+                        <td> Thursday </td>
+                        <td> 5 </td>
+                    </tr>
+                                <tr class="logDetails">
+                                    <td> 3:30pm </td>
+                                    <td> In </td>
+                                </tr>
+                                <tr class="logDetails">
+                                    <td> 4:30pm </td>
+                                    <td> Out </td>
+                                </tr>
+        </tbody>
+
+        <tbody>
+                    <tr>
+                        <td> Friday </td>
+                        <td> 5 </td>
+                    </tr>
+                                <tr class="logDetails">
+                                    <td> 3:30pm </td>
+                                    <td> In </td>
+                                </tr>
+                                <tr class="logDetails">
+                                    <td> 4:30pm </td>
+                                    <td> Out </td>
+                                </tr>
+        </tbody>
+
+    </table>
+
+
+<script src="/javascript/timelog.js"></script>
+ </body>
 </html>
