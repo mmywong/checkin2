@@ -8,7 +8,9 @@
 </head>
 
 <body background = "">
-<h1>Welcome <%=first_name%>!</h1>
+<h1>
+    <%= (is_checking_in) ? 'Welcome ' + first_name + '!' : 'Have a nice day ' + first_name + '!'%>
+</h1>
 <div id = 'id_box'>
     <button class = 'btn btn-success' id = 'view_logs' type = 'submit'> View Logs </button><br>
 
