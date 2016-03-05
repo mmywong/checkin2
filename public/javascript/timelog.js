@@ -9,9 +9,11 @@ $(document).ready(function () {
             myTRs.show();
         } else {
             $this.addClass("collapsed");
-            var newInfo = myTRs.first().children("td").first().text();
+            var day = myTRs.first().children("td").first().text();
+            var hours = myTRs.first().children("td").children("tr");
+            console.log(hours);
             myTRs.hide();
-            $this.prepend($("<tr><td colspan='1'>" + newInfo + "</td></tr>").hide()).find("tr").first().slideDown();
+            $this.prepend($("<tr><td>" + day + "</td><td></td></td></tr>").hide()).find("tr").first().slideDown();
         }
     });
 });

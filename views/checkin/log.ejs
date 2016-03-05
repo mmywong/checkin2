@@ -11,10 +11,11 @@
 
   <body>
     <h1>User's Logs</h1>
-	<button class = 'log btn btn-danger' id = 'exit' type = submit>Exit</button>
+    <h3>Logged this week: 10 hours<!--<%#= docs.total %>--> hrs</h3><br>
 
-
-    <h3>Logged this week: 10 hrs</h3><br>
+    <form action='/checkin' method="GET">
+        <button class = 'log btn btn-danger' id = 'exit' type = submit>Exit</button>
+    </form>
 
     <table name = 'myTable' id = 'myTable' class = 'table table-inverse'>
         <thead>
@@ -29,76 +30,12 @@
                 <td> Monday </td>
                 <td> 3 </td>
             </tr>
-                        <tr class="logDetails">
-                            <td> 3:30pm </td>
-                            <td> In </td>
-                        </tr>
-                        <tr class = "logDetails">
-                            <td> 4:30pm </td>
-                            <td> Out </td>
-                        </tr>
-
+            <%#for(var i = 0; i < docs.length; i++){ %>
+                <tr class="logDetails">
+                    <td colspan='2'> 3~5 <!--<%#= docs.checkin %> - <%#= docs.checkout %> --> </td>
+                </tr>
+             <%# } %>
         </tbody>
-        <tbody>
-            <tr>
-                <td> Tuesday </td>
-                <td> 4 </td>
-            </tr>
-                        <tr class="logDetails">
-                            <td> 1:30pm </td>
-                            <td> In </td>
-                        </tr>
-                        <tr class="logDetails">
-                            <td> 5:30pm </td>
-                            <td> Out </td>
-                        </tr>
-        </tbody>
-
-        <tbody>
-            <tr>
-                <td> Wednesday </td>
-                <td> 5 </td>
-            </tr>
-                        <tr class="logDetails">
-                            <td> 3:30pm </td>
-                            <td> In </td>
-                        </tr>
-                        <tr class="logDetails">
-                            <td> 4:30pm </td>
-                            <td> Out </td>
-                        </tr>
-        </tbody>
-        <tbody>
-                    <tr>
-                        <td> Thursday </td>
-                        <td> 5 </td>
-                    </tr>
-                                <tr class="logDetails">
-                                    <td> 3:30pm </td>
-                                    <td> In </td>
-                                </tr>
-                                <tr class="logDetails">
-                                    <td> 4:30pm </td>
-                                    <td> Out </td>
-                                </tr>
-        </tbody>
-
-        <tbody>
-                    <tr>
-                        <td> Friday </td>
-                        <td> 5 </td>
-                    </tr>
-                                <tr class="logDetails">
-                                    <td> 3:30pm </td>
-                                    <td> In </td>
-                                </tr>
-                                <tr class="logDetails">
-                                    <td> 4:30pm </td>
-                                    <td> Out </td>
-                                </tr>
-        </tbody>
-
-    </table>
 
 
 <script src="/javascript/timelog.js"></script>
