@@ -2,80 +2,79 @@
 <html>
 <head>
   <title>Check-In</title>
+
   <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" crossorigin="anonymous">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
   <link rel='stylesheet' href='/stylesheets/style.css'>
 
 </head>
 
-<body>
+<body id="index_body" onload="<%= onload %>">
 
+  <h1 id="index_title" class="<%= title_style %>"><%= title%></h1>
+  <div id = 'id_box'>
+    <h2>ID:</h2>
 
-<h1><%= title%></h1>
-<div id = 'id_box'>
-  <h2>ID:</h2>
+    <form action='/checkin' method="POST" id = "id_text_box">
+      <input type="text" name='user_id' id = "box" value="" readonly>
 
-  <form action='/checkin' method="POST" id = "id_text_box">
-    <input type="text" name='user_id' id = "box" value="" readonly>
+      <button class = 'btn btn-danger' id = 'bksps' type = 'button'>
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+      </button><br>
+    </div>
 
+    <div id = 'num_pad'>
+      <button class = 'btn btn-info' id = 'one' value = '1' type = 'button'>1</button>
+      <button class = 'btn btn-info' id = 'two' value = '2' type = 'button'>2</button>
+      <button class = 'btn btn-info' id = 'three' value = '3' type = 'button'>3</button><br>
 
-  <button class = 'btn btn-danger' id = 'bksps' type = 'button'>
+      <button class = 'btn btn-info' id = 'four' value = '4' type ='button'>4</button>
+      <button class = 'btn btn-info' id = 'five' value = '5' type = 'button'>5</button>
+      <button class = 'btn btn-info' id = 'six' value = '6' type = 'button'>6</button><br>
 
-          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+      <button class = 'btn btn-info' id = 'seven' value = '7' type = 'button'>7</button>
+      <button class = 'btn btn-info' id = 'eight' value = '8' type = 'button'>8</button>
+      <button class = 'btn btn-info' id = 'nine' value = '9' type = 'button'>9</button><br>
 
-  </button><br>
-</div>
+      <button class = 'btn btn-info' id = 'zero' value = '0' type = 'button'>0</button><br>
+    </div>
 
-<div id = 'num_pad'>
-  <button class = 'btn btn-info' id = 'one' value = '1' type = 'button'>1</button>
-  <button class = 'btn btn-info' id = 'two' value = '2' type = 'button'>2</button>
-  <button class = 'btn btn-info' id = 'three' value = '3' type = 'button'>3</button><br>
+    <div class = 'submit'>
+      <button class = 'btn btn-success' id = 'submit' type = 'submit'>
+        SUBMIT <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+      </button>
+    </div>
 
-  <button class = 'btn btn-info' id = 'four' value = '4' type ='button'>4</button>
-  <button class = 'btn btn-info' id = 'five' value = '5' type = 'button'>5</button>
-  <button class = 'btn btn-info' id = 'six' value = '6' type = 'button'>6</button><br>
-
-  <button class = 'btn btn-info' id = 'seven' value = '7' type = 'button'>7</button>
-  <button class = 'btn btn-info' id = 'eight' value = '8' type = 'button'>8</button>
-  <button class = 'btn btn-info' id = 'nine' value = '9' type = 'button'>9</button><br>
-
-  <button class = 'btn btn-info' id = 'zero' value = '0' type = 'button'>0</button><br>
-</div>
-
-<div class = 'submit'>
-  <button class = 'btn btn-success' id = 'submit' type = 'submit'>
-      SUBMIT <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-  </button>
-</div>
-
-</form>
+  </form>
   <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
   <script src="/javascript/script.js"></script>
   <script>
 
-    var autoLogout = setInterval(function(){
-      var currentHour = new Date().getHours();
-      //console.log(currentHour);
+  var autoLogout = setInterval(function(){
+    var currentHour = new Date().getHours();
+    //console.log(currentHour);
 
-      var currentMin = new Date().getMinutes();
-      //console.log(currentMin);
-      if(currentHour === 23 && currentMin === 59){
-        console.log("MADEIT");
-        $.ajax({
-          url: '/checkin/autoLogout',
-          type: 'POST',
-          data: {
+    var currentMin = new Date().getMinutes();
+    //console.log(currentMin);
+    if(currentHour === 23 && currentMin === 59){
+      console.log("MADEIT");
+      $.ajax({
+        url: '/checkin/autoLogout',
+        type: 'POST',
+        data: {
 
-          },
-          success: function(data){
-            //console.log(data);
-          },
-          error: function(){
-            //console.log("Error");
-          }
-        });
-      }
-    }, 5000);
+        },
+        success: function(data){
+          //console.log(data);
+        },
+        error: function(){
+          //console.log("Error");
+        }
+      });
+    }
+  }, 5000);
 
   </script>
 </body>
