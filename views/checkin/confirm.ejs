@@ -27,5 +27,32 @@
 
 
 </div>
+
+<script>
+    var autoLogout = setInterval(function(){
+        var currentHour = new Date().getHours();
+        //console.log(currentHour);
+
+        var currentMin = new Date().getMinutes();
+        //console.log(currentMin);
+        if(currentHour === 23 && currentMin === 59){
+            console.log("MADEIT");
+            $.ajax({
+                url: '/checkin/autoLogout',
+                type: 'POST',
+                data: {
+
+                },
+                success: function(data){
+                    //console.log(data);
+                },
+                error: function(){
+                    //console.log("Error");
+                }
+            });
+        }
+    }, 5000);
+</script>
+
 </body>
 </html>

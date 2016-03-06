@@ -117,6 +117,24 @@ router.post('/', function(req, res){
   });
 });
 
+router.post('/autoLogout', function(req, res){
+
+    var currentTime = Date.now();
+
+    // Add the user's checkout time
+    timelogModel.update({timeout: 0}, {timeout: currentTime}, {multi: true}, function(err, doc){
+
+
+
+    });
+
+    employeeModel.update({checkedin:true}, {checkedin: false}, {multi: true}, function(err, doc){
+
+    });
+
+    res.redirect('/checkin');
+});
+
 router.post('/confirm', function(req, res){
   var userId = req.body.user_id;
   var offset = req.body.offset;
