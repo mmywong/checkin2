@@ -1,58 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Check-In</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>Check-In</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
 
 </head>
 
 <body background = "">
-<h1>
+  <h1>
     <%= (is_checking_in) ? 'Welcome ' + first_name + '!' : 'Have a nice day ' + first_name + '!'%>
-</h1>
-<div id = 'id_box'>
+  </h1>
 
+  <div id = 'id_box'>
     <form action="/checkin/confirm" method="POST">
-        <input type="hidden" name='user_id' value="<%=user_id%>" >
-        <input type="hidden" name='offset' value="0" >
+      <input type="hidden" name='user_id' value="<%=user_id%>" >
+      <input type="hidden" name='offset' value="0" >
 
-        <button class = 'btn btn-success' id = 'view_logs' type = 'submit'> View Logs </button><br>
+      <button class = 'btn btn-success' id = 'view_logs' type = 'submit'> View Logs </button><br>
     </form>
 
     <form action='/checkin' method="GET">
-        <button class = 'btn btn-danger' id = 'exit' type = submit>Exit</button><br>
+      <button class = 'btn btn-danger' id = 'exit' type = submit>Exit</button><br>
     </form>
-</div>
-
-
+  </div>
 </div>
 
 <script>
-    var autoLogout = setInterval(function(){
-        var currentHour = new Date().getHours();
-        //console.log(currentHour);
+var autoLogout = setInterval(function(){
+  var currentHour = new Date().getHours();
+  //console.log(currentHour);
 
-        var currentMin = new Date().getMinutes();
-        //console.log(currentMin);
-        if(currentHour === 23 && currentMin === 59){
-            console.log("MADEIT");
-            $.ajax({
-                url: '/checkin/autoLogout',
-                type: 'POST',
-                data: {
+  var currentMin = new Date().getMinutes();
+  //console.log(currentMin);
+  if(currentHour === 23 && currentMin === 59){
+    console.log("MADE IT");
+    $.ajax({
+      url: '/checkin/autoLogout',
+      type: 'POST',
+      data: {
 
-                },
-                success: function(data){
-                    //console.log(data);
-                },
-                error: function(){
-                    //console.log("Error");
-                }
-            });
-        }
-    }, 5000);
+      },
+      success: function(data){
+        //console.log(data);
+      },
+      error: function(){
+        //console.log("Error");
+      }
+    });
+  }
+}, 5000);
 </script>
-
 </body>
 </html>

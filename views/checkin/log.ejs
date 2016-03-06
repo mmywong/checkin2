@@ -1,166 +1,155 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Check-In</title>
-    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<head>
+  <title>Check-In</title>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-  </head>
+</head>
 
-  <body>
-    <h1>User's Logs</h1>
-    <h3>Logged this week: <%= data.totalHours %> hours</h3><br>
+<body>
+  <h1>User's Logs</h1>
+  <h3>Logged this week: <%= data.totalHours %> hours</h3><br>
 
-    <form action='/checkin' method="GET">
-        <button class = 'log btn btn-danger' id = 'exit' type = submit>Exit</button>
-    </form>
+  <form action='/checkin' method="GET">
+    <button class = 'log btn btn-danger' id = 'exit' type = submit>Exit</button>
+  </form>
 
-    <table name = 'myTable' id = 'myTable' class = 'table table-inverse'>
-        <thead>
-            <tr>
-                <th> Day </th>
-                <th> Hours Worked </th>
+  <table name = 'myTable' id = 'myTable' class = 'table table-inverse'>
+    <thead>
+      <tr>
+        <th> Day </th>
+        <th> Hours Worked </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr id='monday'>
+        <td> Monday </td>
+        <td> <%= data.mondayHours %> </td>
+      </tr>
+      <%for(var i = 0; i < data.mondayTimes.length; i++){ %>
+        <tr class='logDetails'>
+          <td colspan='2'>
+            <div id='mon_detail' style="display:none">
+              <%= data.mondayTimes[i].timein %> - <%= data.mondayTimes[i].timeout %>
+            </div>
+          </td>
+        </tr>
+        <% } %>
+
+        <tr id='tuesday'>
+          <td> Tuesday </td>
+          <td><%= data.tuesdayHours %></td>
+        </tr>
+        <%for(var i = 0; i < data.tuesdayTimes.length; i++){ %>
+          <tr class='logDetails'>
+            <td colspan='2'>
+              <div id='tues_detail' style="display:none">
+                <%= data.tuesdayTimes[i].timein %> - <%= data.tuesdayTimes[i].timeout %>
+              </div>
+            </td>
+          </tr>
+          <% } %>
+
+          <tr id='wednesday'>
+            <td> Wednesday </td>
+            <td><%= data.wednesdayHours %></td>
+          </tr>
+          <%for(var i = 0; i < data.wednesdayTimes.length; i++){ %>
+            <tr class='logDetails'>
+              <td colspan='2'>
+                <div id='wed_detail' style="display:none">
+                  <%= data.wednesdayTimes[i].timein %> - <%= data.wednesdayTimes[i].timeout %>
+                </div>
+              </td>
             </tr>
-        </thead>
+            <% } %>
 
-        <tbody>
-            <tr id='monday'>
-                <td> Monday </td>
-                <td> <%= data.mondayHours %> </td>
-            </tr>
-            <%for(var i = 0; i < data.mondayTimes.length; i++){ %>
-                <tr class='logDetails'>
-                    <td colspan='2'>
-                        <div id='mon_detail' style="display:none">
-                            <%= data.mondayTimes[i].timein %> - <%= data.mondayTimes[i].timeout %>
-                        </div>
-                    </td>
-                </tr>
-             <% } %>
-        </tbody>
-
-        <tbody>
-            <tr id='tuesday'>
-                <td> Tuesday </td>
-                <td><%= data.tuesdayHours %></td>
-            </tr>
-            <%for(var i = 0; i < data.tuesdayTimes.length; i++){ %>
-                <tr class='logDetails'>
-                    <td colspan='2'>
-                        <div id='tues_detail' style="display:none">
-                            <%= data.tuesdayTimes[i].timein %> - <%= data.tuesdayTimes[i].timeout %>
-                        </div>
-                    </td>
-                </tr>
-             <% } %>
-        </tbody>
-        <tbody>
-            <tr id='wednesday'>
-                <td> Wednesday </td>
-                <td><%= data.wednesdayHours %></td>
-            </tr>
-            <%for(var i = 0; i < data.wednesdayTimes.length; i++){ %>
-                <tr class='logDetails'>
-                    <td colspan='2'>
-                        <div id='wed_detail' style="display:none">
-                            <%= data.wednesdayTimes[i].timein %> - <%= data.wednesdayTimes[i].timeout %>
-                        </div>
-                    </td>
-                </tr>
-             <% } %>
-        </tbody>
-
-        <tbody>
             <tr id='thursday'>
-                <td> Thursday </td>
-                <td><%= data.thursdayHours %></td>
+              <td> Thursday </td>
+              <td><%= data.thursdayHours %></td>
             </tr>
             <%for(var i = 0; i < data.thursdayTimes.length; i++){ %>
-                <tr class='logDetails'>
-                    <td colspan='2'>
-                        <div id='thur_detail' style="display:none">
-                            <%= data.thursdayTimes[i].timein %> - <%= data.thursdayTimes[i].timeout %>
-                        </div>
-                    </td>
-                </tr>
-             <% } %>
-        </tbody>
+              <tr class='logDetails'>
+                <td colspan='2'>
+                  <div id='thur_detail' style="display:none">
+                    <%= data.thursdayTimes[i].timein %> - <%= data.thursdayTimes[i].timeout %>
+                  </div>
+                </td>
+              </tr>
+              <% } %>
 
-        <tbody>
-            <tr id='friday'>
+              <tr id='friday'>
                 <td> Friday </td>
                 <td><%= data.fridayHours %></td>
-            </tr>
-            <%for(var i = 0; i < data.fridayTimes.length; i++){ %>
+              </tr>
+              <%for(var i = 0; i < data.fridayTimes.length; i++){ %>
                 <tr class='logDetails'>
-                    <td colspan='2'>
-                        <div id='fri_detail' style="display:none">
-                            <%= data.fridayTimes[i].timein %> - <%= data.fridayTimes[i].timeout %>
-                        </div>
-                    </td>
+                  <td colspan='2'>
+                    <div id='fri_detail' style="display:none">
+                      <%= data.fridayTimes[i].timein %> - <%= data.fridayTimes[i].timeout %>
+                    </div>
+                  </td>
                 </tr>
-             <% } %>
-        </tbody>
+                <% } %>
 
-        <tbody>
-            <tr id='saturday'>
-                <td> Saturday </td>
-                <td><%= data.saturdayHours %></td>
-            </tr>
-            <%for(var i = 0; i < data.saturdayTimes.length; i++){ %>
-                <tr class='logDetails'>
-                    <td colspan='2'>
-                        <div id='sat_detail' style="display:none">
-                            <%= data.saturdayTimes[i].timein %> - <%= data.saturdayTimes[i].timeout %>
-                        </div>
-                    </td>
+                <tr id='saturday'>
+                  <td> Saturday </td>
+                  <td><%= data.saturdayHours %></td>
                 </tr>
-             <% } %>
-        </tbody>
-
-        <tbody>
-            <tr id='sunday'>
-                <td> Sunday </td>
-                <td><%= data.sundayHours %></td>
-            </tr>
-            <%for(var i = 0; i < data.sundayTimes.length; i++){ %>
-                <tr class='logDetails'>
+                <%for(var i = 0; i < data.saturdayTimes.length; i++){ %>
+                  <tr class='logDetails'>
                     <td colspan='2'>
+                      <div id='sat_detail' style="display:none">
+                        <%= data.saturdayTimes[i].timein %> - <%= data.saturdayTimes[i].timeout %>
+                      </div>
+                    </td>
+                  </tr>
+                  <% } %>
+
+                  <tr id='sunday'>
+                    <td> Sunday </td>
+                    <td><%= data.sundayHours %></td>
+                  </tr>
+                  <%for(var i = 0; i < data.sundayTimes.length; i++){ %>
+                    <tr class='logDetails'>
+                      <td colspan='2'>
                         <div id='sun_detail' style="display:none">
-                            <%= data.sundayTimes[i].timein %> - <%= data.sundayTimes[i].timeout %>
+                          <%= data.sundayTimes[i].timein %> - <%= data.sundayTimes[i].timeout %>
                         </div>
-                    </td>
-                </tr>
-             <% } %>
-        </tbody>
+                      </td>
+                    </tr>
+                    <% } %>
+                  </tbody>
 
-<script src="/javascript/timelog.js"></script>
-        <script>
-            var autoLogout = setInterval(function(){
-                var currentHour = new Date().getHours();
-                //console.log(currentHour);
+                  <script src="/javascript/timelog.js"></script>
+                  <script>
+                  var autoLogout = setInterval(function(){
+                    var currentHour = new Date().getHours();
+                    //console.log(currentHour);
 
-                var currentMin = new Date().getMinutes();
-                //console.log(currentMin);
-                if(currentHour === 23 && currentMin === 59){
-                    console.log("MADEIT");
-                    $.ajax({
+                    var currentMin = new Date().getMinutes();
+                    //console.log(currentMin);
+                    if(currentHour === 23 && currentMin === 59){
+                      console.log("MADEIT");
+                      $.ajax({
                         url: '/checkin/autoLogout',
                         type: 'POST',
                         data: {
 
                         },
                         success: function(data){
-                            //console.log(data);
+                          //console.log(data);
                         },
                         error: function(){
-                            //console.log("Error");
+                          //console.log("Error");
                         }
-                    });
-                }
-            }, 5000);
-        </script>
- </body>
-</html>
+                      });
+                    }
+                  }, 5000);
+                  </script>
+                </body>
+                </html>

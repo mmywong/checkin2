@@ -1,36 +1,15 @@
-/**
- * Created by kaseymunetake on 3/2/16.
- */
 var express = require('express');
 var router = express.Router();
 
 var employeeModel = require('../models/employees');
 var timelogModel = require('../models/timelog') ;
 
-/* FOR BACK-END TESTING ONLY. DELETE LATER. */
-router.get('/test', function(req, res, next) {
-  res.render('checkin/test', {
-    title: 'The Portal Check-in System'
-  });
-});
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('checkin/index', {
-    title: 'The Portal Check-in System',
-    title_style: ''
-  });
-});
-
-/* FOR BACK-END TESTING ONLY. DELETE LATER. */
-router.get('/confirm', function(req, res, next) {
-  renderConfirmPage(res, "", "The Portal", true);
-});
-
-/* FOR BACK-END TESTING ONLY. DELETE LATER. */
-router.get('/log', function(req, res, next) { // add :id later
-  res.render('checkin/log', {
-    title: 'Express'
+    title: 'The Portal Check-In System',
+    title_style: '',
+    onload: ''
   });
 });
 
@@ -55,7 +34,8 @@ router.post('/', function(req, res){
     if(docs[0] === undefined){
       res.render('checkin/index', {
         title: 'Invalid User ID',
-        title_style: 'invalid_user'
+        title_style: 'invalid_user',
+        onload: 'reload_invalid_page();'
       });
     }
     else{
@@ -132,8 +112,6 @@ router.post('/autoLogout', function(req, res){
 
     // Add the user's checkout time
     timelogModel.update({timeout: 0}, {timeout: currentTime}, {multi: true}, function(err, doc){
-
-
 
     });
 
