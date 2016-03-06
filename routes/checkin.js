@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 var employeeModel = require('../models/employees');
-var timelogModel = require('../models/timelog');
+var timelogModel = require('../models/timelog') ;
 
 /* FOR BACK-END TESTING ONLY. DELETE LATER. */
 router.get('/test', function(req, res, next) {
@@ -126,6 +126,24 @@ router.post('/', function(req, res){
   });
 });
 
+router.post('/autoLogout', function(req, res){
+
+    var currentTime = Date.now();
+
+    // Add the user's checkout time
+    timelogModel.update({timeout: 0}, {timeout: currentTime}, {multi: true}, function(err, doc){
+
+
+
+    });
+
+    employeeModel.update({checkedin:true}, {checkedin: false}, {multi: true}, function(err, doc){
+
+    });
+
+    res.redirect('/checkin');
+});
+
 router.post('/confirm', function(req, res){
   var userId = req.body.user_id;
   var offset = req.body.offset;
@@ -158,36 +176,37 @@ router.post('/confirm', function(req, res){
     for(var i = 0; i < doc.length; i++){
       var timein = new Date(doc[i].timein);
       var timeout = new Date(doc[i].timeout);
+
       //console.log(timein.getDay());
       //console.log(timeout.getDay());
       //console.log((timeout - timein) / 3600 / 1000);
       switch(timeout.getDay()){
         case 0:
-          sundayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          sundayTimes.push({timein: timein.getHours() + ":" + ("0" + timein.getMinutes()).slice(-2), timeout: timeout.getHours() + ":" + ("0" + timeout.getMinutes()).slice(-2)});
           sundayHours = sundayHours + (timeout - timein) / 3600 / 1000;
           break;
         case 1:
-          mondayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          mondayTimes.push({timein: timein.getHours() + ":" + ("0" + timein.getMinutes()).slice(-2), timeout: timeout.getHours() + ":" + ("0" + timeout.getMinutes()).slice(-2)});
           mondayHours = sundayHours + (timeout - timein) / 3600 / 1000;
           break;
         case 2:
-          tuesdayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          tuesdayTimes.push({timein: timein.getHours() + ":" + ("0" + timein.getMinutes()).slice(-2), timeout: timeout.getHours() + ":" + ("0" + timeout.getMinutes()).slice(-2)});
           tuesdayHours = sundayHours + (timeout - timein) / 3600 / 1000;
           break;
         case 3:
-          wednesdayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          wednesdayTimes.push({timein: timein.getHours() + ":" + ("0" + timein.getMinutes()).slice(-2), timeout: timeout.getHours() + ":" + ("0" + timeout.getMinutes()).slice(-2)});
           wednesdayHours = sundayHours + (timeout - timein) / 3600 / 1000;
           break;
         case 4:
-          thursdayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          thursdayTimes.push({timein: timein.getHours() + ":" + ("0" + timein.getMinutes()).slice(-2), timeout: timeout.getHours() + ":" + ("0" + timeout.getMinutes()).slice(-2)});
           thursdayHours = sundayHours + (timeout - timein) / 3600 / 1000;
           break;
         case 5:
-          fridayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          fridayTimes.push({timein: timein.getHours() + ":" + ("0" + timein.getMinutes()).slice(-2), timeout: timeout.getHours() + ":" + ("0" + timeout.getMinutes()).slice(-2)});
           fridayHours = sundayHours + (timeout - timein) / 3600 / 1000;
           break;
         case 6:
-          saturdayTimes.push({timein: timein.getHours() + ":" + timein.getMinutes(), timeout: timeout.getHours() + ":" + timeout.getMinutes()});
+          saturdayTimes.push({timein: timein.getHours() + ":" + ("0" + ("0" + timein.getMinutes()).slice(-2)).slice(-2), timeout: timeout.getHours() + ":" + ("0" + ("0" + timeout.getMinutes()).slice(-2)).slice(-2)});
           saturdayHours = sundayHours + (timeout - timein) / 3600 / 1000;
           break;
         default:

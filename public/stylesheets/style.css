@@ -1,6 +1,7 @@
 body {
   position: relative;
   background-color: white;
+  margin: 50px;
 }
 
 .invalid_user{
@@ -21,9 +22,9 @@ body:after{
   z-index: -1;
 }
 
-                 #id_box, h1, #num_pad{
-                   text-align: center;
-                 }
+#id_box, h1, #num_pad{
+    text-align: center;
+}
 
 h1{
   font-size: 65px !important;
@@ -131,3 +132,10 @@ table tbody tr td{
   padding-left: 15px;
 }
 
+#myTable{
+  align: center;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #818a91 !important;
+}
