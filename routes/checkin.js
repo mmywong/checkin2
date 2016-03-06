@@ -22,12 +22,12 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* GET the Confirm page. */
+/* FOR BACK-END TESTING ONLY. DELETE LATER. */
 router.get('/confirm', function(req, res, next) {
   renderConfirmPage(res, "", "The Portal", true);
 });
 
-/* GET the user's time Log page. */
+/* FOR BACK-END TESTING ONLY. DELETE LATER. */
 router.get('/log', function(req, res, next) { // add :id later
   res.render('checkin/log', {
     title: 'Express'
