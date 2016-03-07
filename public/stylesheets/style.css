@@ -129,8 +129,8 @@ h3{
 
 table tbody tr td div{
   padding-left: 15px;
+  margin: .3em .75em .3em .75em;
 }
-
 
 tr{
   border-top: 2px solid #818a91 !important;
@@ -138,6 +138,10 @@ tr{
 
 thead tr{
   border-top: none !important;
+}
+
+.table td{
+  padding: 0;
 }
 
 th{
