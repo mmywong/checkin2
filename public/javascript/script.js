@@ -32,7 +32,7 @@ var main = function () {
 function reload_invalid_page(){
   setTimeout(function(){
     window.location.href = "/checkin";
- }, invalid_msg_duration);
+  }, invalid_msg_duration);
 }
 
 $(document).ready(main);
